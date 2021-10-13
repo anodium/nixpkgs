@@ -14,6 +14,7 @@ let
   wrapper = {
     extraMakeWrapperArgs ? [],
     youtubeSupport ? true,
+    youtubePackage ? youtube-dl,
     # a set of derivations (probably from `mpvScripts`) where each is
     # expected to have a `scriptName` passthru attribute that points to the
     # name of the script that would reside in the script's derivation's
@@ -25,7 +26,7 @@ let
     binPath = lib.makeBinPath ([
       mpv.luaEnv
     ] ++ lib.optionals youtubeSupport [
-      youtube-dl
+      youtubePackage
     ] ++ lib.optionals mpv.vapoursynthSupport [
       mpv.vapoursynth.python3
     ]);
